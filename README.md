@@ -1,11 +1,11 @@
 # Pong
 A simple pong game.
 
-- Controls - 
-Left Player:
+# Controls
+- Left Player:
 WASD
 
-Right Player:
+- Right Player:
 Arrow keys
 
 
