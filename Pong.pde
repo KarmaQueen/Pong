@@ -15,7 +15,7 @@ public void setup() {
   noStroke();
   keys = new boolean[9];
   halfwidth = width*0.5F;
-  setState(new GameState());
+  setState(new StateGame());
 }
 
 public void draw() {

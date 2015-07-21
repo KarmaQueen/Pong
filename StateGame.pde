@@ -1,14 +1,14 @@
 /*
  * The state in which the actual game takes place in.
  */
-class GameState extends State {
+class StateGame extends State {
   
   private ArrayList<GameObject> objectList = new ArrayList<GameObject>(); //list of all the game objects; paddles, balls, etc
   private ArrayList<Paddle> paddleList = new ArrayList<Paddle>(); //list of all the paddles
   private ArrayList<Ball> ballList = new ArrayList<Ball>(); //list of all the balls
   
   //could be used to load settings before starting the game, etc
-  public GameState() {
+  public StateGame() {
   }
   
   public void init(Pong pong) {
