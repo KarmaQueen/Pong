@@ -1,6 +1,6 @@
 public abstract class State {
   
-  private Pong game;
+  protected Pong game;
   
   public void init(Pong pong) {
     game = pong;

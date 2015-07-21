@@ -7,8 +7,9 @@ public abstract class GameObject {
     c = new Color(255,255,255);
   }
   
-  public void setColor(int red, int green, int blue){
+  public GameObject setColor(int red, int green, int blue){
     c.setColor(red,green,blue);
+    return this;
   }
 
   public void update() {
@@ -20,9 +21,10 @@ public abstract class GameObject {
     c.setFill();
   }
 
-  public void setPos(double x, double y) {
+  public GameObject setPos(double x, double y) {
     posX = x;
     posY = y;
+    return this;
   }
   
   //Get the partial position of the game object's current position
@@ -37,5 +39,9 @@ public abstract class GameObject {
     pos[1] = py + dy * framestep;
     return pos;
   }
+  
+  //Getters
+  public double getPosX(){ return posX; }
+  public double getPosY(){ return posY; } 
   
 }
