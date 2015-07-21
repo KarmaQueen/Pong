@@ -10,8 +10,6 @@ public abstract class GameObject {
 
   public abstract void render(double framestep);
 
-  public abstract void handleInputs();
-  
   public void setPos(double x, double y) {
     posX = x;
     posY = y;

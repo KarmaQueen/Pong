@@ -13,8 +13,4 @@ class Ball extends GameObject{
     double[] pos = getPartialPos(framestep);
     ellipse((float)pos[0], (float)pos[1], 20, 20);
   }
-
-  public void handleInputs(){
-  
-  }  
 }
