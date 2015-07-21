@@ -3,7 +3,7 @@
  * When instantiating a new color, use new Color(red,green,blu);
  *
  */
-public class Color{
+class Color{
   
   private int r, g, b;
   
