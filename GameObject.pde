@@ -3,6 +3,7 @@ public abstract class GameObject {
   private double posX, posY, pPosX, pPosY;
 
   public void update() {
+    System.out.println("WASSUUUUUUP");
     pPosX = posX;
     pPosY = posY;
   }
