@@ -70,17 +70,18 @@ public void render(double framestep) {
   
   
   
-  /* Replaces the following code. Totally unnecessary, but yolo man
+  //Draws the input visualizer on the bottom of the screen.
+  noStroke();
   if(keys[0]) rect(width * 0.5F - 10, height - 11F, 5, 5);
   if(keys[1]) rect(width * 0.5F - 10, height - 6F,  5, 5);
   if(keys[2]) rect(width * 0.5F - 15, height - 6F,  5, 5);
-  if(keys[3]) rect(width * 0.5F - 5,  height - 6F,  5, 5);
+  if(keys[3]) rect(width * 0.5F -  5, height - 6F,  5, 5);
   if(keys[4]) rect(width * 0.5F + 10, height - 11F, 5, 5);
   if(keys[5]) rect(width * 0.5F + 10, height - 6F,  5, 5);
-  if(keys[6]) rect(width * 0.5F + 15, height - 6F,  5, 5);
-  if(keys[7]) rect(width * 0.5F + 5,  height - 6F,  5, 5);
-  */
-  noStroke();
+  if(keys[6]) rect(width * 0.5F +  5, height - 6F,  5, 5);
+  if(keys[7]) rect(width * 0.5F + 15, height - 6F,  5, 5);
+  
+  /* Deprecated
   boolean left;
   int val;
   for(int i = 0; i < keys.length; i++) {
@@ -92,7 +93,7 @@ public void render(double framestep) {
       450 - (val==0? 11 : 6),
       5,5);
     }
-  }
+  } */
   
   for(GameObject obj : objectList) obj.render(framestep);
 }
