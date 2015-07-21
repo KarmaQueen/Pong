@@ -6,9 +6,7 @@ private boolean keys[];
 private double previous = System.currentTimeMillis();
 private double lag = 0.0;
 
-ArrayList<GameObject> objectList = new ArrayList<GameObject>();
-ArrayList<Paddle> paddleList = new ArrayList<Paddle>();
-ArrayList<Ball> ballList = new ArrayList<Ball>();
+private State currentState;
 
 public void setup() {
   size(800, 450);
@@ -17,7 +15,7 @@ public void setup() {
   noStroke();
   keys = new boolean[9];
   halfwidth = width*0.5F;
-  addBall(new Ball());
+  setState(new GameState());
 }
 
 public void draw() {
@@ -61,7 +59,7 @@ public void keyReleased() {
 
 public void render(double framestep) {
   background(0); //clears the screen
-  
+
   //draws a line, dividing the middle of the screen
   stroke(255);
   line(width * 0.5, 0, width * 0.5, height);
@@ -76,22 +74,27 @@ public void render(double framestep) {
   if(keys[5]) rect(width * 0.5F + 10, height - 6F,  5, 5);
   if(keys[6]) rect(width * 0.5F +  5, height - 6F,  5, 5);
   if(keys[7]) rect(width * 0.5F + 15, height - 6F,  5, 5);
+<<<<<<< HEAD
 
   for(GameObject obj : objectList) obj.render(framestep);
 }
 
 public void update() {
   for(GameObject obj : objectList) obj.update();
+  currentState.render(framestep);
 }
 
-public Ball addBall(Ball ball) {
-  objectList.add(ball);
-  ballList.add(ball);
-  return ball;
+public void update() {
+  currentState.update();
 }
 
-public Paddle addPaddle(Paddle paddle) {
-  objectList.add(paddle);
-  paddleList.add(paddle);
-  return paddle;
+public void setState(State state) {
+  if(currentState != null) currentState.deinit();
+  currentState = state;
+  currentState.init(this);
 }
+
+public State getCurrentState() {
+  return currentState;
+}
+
