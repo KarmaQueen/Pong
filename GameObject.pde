@@ -1,13 +1,24 @@
 public abstract class GameObject {
   
+  private Color c;
   private double posX, posY, pPosX, pPosY;
+  
+  public GameObject(){
+    c = new Color(255,255,255);
+  }
+  
+  public void setColor(int red, int green, int blue){
+    c.setColor(red,green,blue);
+  }
 
   public void update() {
     pPosX = posX;
     pPosY = posY;
   }
 
-  public abstract void render(double framestep);
+  public void render(double framestep) {
+    c.setFill();
+  }
 
   public void setPos(double x, double y) {
     posX = x;

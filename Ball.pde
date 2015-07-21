@@ -9,7 +9,7 @@ class Ball extends GameObject{
   }
 
   public void render(double framestep){
-    fill(255);
+    super.render(framestep);
     double[] pos = getPartialPos(framestep);
     ellipse((float)pos[0], (float)pos[1], 20, 20);
   }

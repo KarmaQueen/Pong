@@ -17,6 +17,7 @@ public void setup() {
   noStroke();
   keys = new boolean[9];
   halfwidth = width*0.5F;
+  addBall(new Ball());
 }
 
 public void draw() {
@@ -58,20 +59,15 @@ public void keyReleased() {
   if(key == ' ')               keys[8] = false;
 }
 
-boolean dr=false;
-
 public void render(double framestep) {
   background(0); //clears the screen
   
   //draws a line, dividing the middle of the screen
   stroke(255);
   line(width * 0.5, 0, width * 0.5, height);
-  
-  
-  
+  noStroke();
   
   //Draws the input visualizer on the bottom of the screen.
-  noStroke();
   if(keys[0]) rect(width * 0.5F - 10, height - 11F, 5, 5);
   if(keys[1]) rect(width * 0.5F - 10, height - 6F,  5, 5);
   if(keys[2]) rect(width * 0.5F - 15, height - 6F,  5, 5);
@@ -80,27 +76,11 @@ public void render(double framestep) {
   if(keys[5]) rect(width * 0.5F + 10, height - 6F,  5, 5);
   if(keys[6]) rect(width * 0.5F +  5, height - 6F,  5, 5);
   if(keys[7]) rect(width * 0.5F + 15, height - 6F,  5, 5);
-  
-  /* Deprecated
-  boolean left;
-  int val;
-  for(int i = 0; i < keys.length; i++) {
-    if(keys[i]) {
-    left = i < 4;
-    val = i%4;
-    rect(
-      halfwidth + (left? -1 : 1)*(10 + (val==2? 5 : 0) - (val==3? 5 : 0)),
-      450 - (val==0? 11 : 6),
-      5,5);
-    }
-  } */
-  
+
   for(GameObject obj : objectList) obj.render(framestep);
 }
 
 public void update() {
-  dr = keys[0];
-  
   for(GameObject obj : objectList) obj.update();
 }
 

@@ -17,7 +17,7 @@ public class Paddle extends GameObject{
   }
 
   public void render(double framestep){
-    fill(255);
+    super.render(framestep);
     double[] pos = getPartialPos(framestep);
     rect((float)pos[0], (float)pos[1], width, height);
   }
