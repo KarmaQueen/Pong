@@ -1,4 +1,4 @@
-abstract class GameObject {
+public abstract class GameObject {
   
   private Color c;
   private double posX, posY, pPosX, pPosY;

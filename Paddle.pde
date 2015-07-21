@@ -1,4 +1,4 @@
-class Paddle extends GameObject{
+public class Paddle extends GameObject{
   
   private float width, height;
   
