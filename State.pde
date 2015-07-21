@@ -1,4 +1,4 @@
-abstract class State {
+public abstract class State {
   
   private Pong game;
   

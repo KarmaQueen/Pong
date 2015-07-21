@@ -1,4 +1,4 @@
-class Ball extends GameObject{
+public class Ball extends GameObject{
   
   public Ball(){
     
