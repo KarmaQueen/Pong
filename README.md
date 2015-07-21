@@ -1,5 +1,5 @@
 # Pong
-A simple pong game.
+A simple pong game. Made using processing while waiting for Unity3D to download.
 
 # Controls
 - Left Player:
