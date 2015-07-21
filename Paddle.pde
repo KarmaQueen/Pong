@@ -1,18 +1,18 @@
-class Paddle implements GameObject{
+public class Paddle extends GameObject{
   
   public Paddle(){
     
   }
   
-  void update(){
+  public void update(){
     
   }
 
-  void render(double framestep){
+  public void render(double framestep){
     
   }
 
-  void handleInputs(){
+  public void handleInputs(){
   
   }  
 }

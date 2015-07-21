@@ -1,14 +1,14 @@
-final double MS_PER_UPDATE = 6;
+public static final double MS_PER_UPDATE = 6;
 
 double previous = System.currentTimeMillis();
 double lag = 0.0;
 
-void setup(){
+public void setup(){
   size(800, 450);
   smooth();
 }
 
-void draw(){
+public void draw(){
   double current = System.currentTimeMillis();
   double elapsed = current - previous;
   previous = current;
@@ -25,15 +25,15 @@ void draw(){
   render(lag/MS_PER_UPDATE);
 }
 
-void render(double framestep){
+public void render(double framestep){
   background(0);
   
 }
 
-void processInput(){
+public void processInput(){
   
 }
 
-void update(){
+public void update(){
   
 }

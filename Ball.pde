@@ -1,18 +1,18 @@
-class Ball implements GameObject{
+class Ball extends GameObject{
   
   public Ball(){
     
   }
   
-  void update(){
+  public void update(){
     
   }
 
-  void render(double framestep){
+  public void render(double framestep){
     
   }
 
-  void handleInputs(){
+  public void handleInputs(){
   
   }  
 }

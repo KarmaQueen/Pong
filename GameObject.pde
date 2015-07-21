@@ -1,9 +1,11 @@
-interface GameObject {
+public abstract class GameObject {
+  
+  private double x, y, dx, dy;
 
-  void update();
+  public abstract void update();
 
-  void render(double framestep);
+  public abstract void render(double framestep);
 
-  void handleInputs();  
+  public abstract void handleInputs();  
   
 }
