@@ -6,6 +6,10 @@ private boolean keys[];
 private double previous = System.currentTimeMillis();
 private double lag = 0.0;
 
+ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+ArrayList<Paddle> paddleList = new ArrayList<Paddle>();
+ArrayList<Ball> ballList = new ArrayList<Ball>();
+
 public void setup() {
   size(800, 450);
   smooth();
@@ -89,8 +93,24 @@ public void render(double framestep) {
       5,5);
     }
   }
+  
+  for(GameObject obj : objectList) obj.render(framestep);
 }
 
 public void update() {
   dr = keys[0];
+  
+  for(GameObject obj : objectList) obj.update();
+}
+
+public Ball addBall(Ball ball) {
+  objectList.add(ball);
+  ballList.add(ball);
+  return ball;
+}
+
+public Paddle addPaddle(Paddle paddle) {
+  objectList.add(paddle);
+  paddleList.add(paddle);
+  return paddle;
 }
