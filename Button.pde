@@ -6,7 +6,7 @@ public class Button extends GameObject{
   private int size, originalSize, enlargedSize;
   private boolean flag;
   
-  //Please use this constructor for initialisation
+  //Please use these constructors for initialisation
   public Button(String text, int size){
     this();
     setText(text);
@@ -14,22 +14,28 @@ public class Button extends GameObject{
     setOriginalSize(size);
     setEnlargedSize(size*6/5);
   }
+  public Button(String text, int size, double x, double y){
+    this(text, size);
+    setPos(x,y);
+  }
   
+  
+  
+  //Not advised to use these
   public Button(String text){
     this();
     setText(text);
   }
-  
   public Button(){
     isClicked = false;
     text = "";
-    size = enlargedSize = originalSize = 50;
+    size = originalSize = 50;
+    enlargedSize = 50;
     flag = false;
   }
   
   public void update(){
     super.update();
-    
     
     isHovered = mouseX >= getPos().getX() - textWidth(text)*size/50 && mouseY >= getPos().getY() - size*0.5F && 
                 mouseX <= getPos().getX() + textWidth(text)*size/50 && mouseY <= getPos().getY() + size*0.5F; 

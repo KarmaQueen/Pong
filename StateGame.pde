@@ -26,17 +26,17 @@ public class StateGame extends State {
     ball.setPos(width*0.5, height*0.5).setPPos(width*0.5, height*0.5);
     addBall(ball);
 
-    Paddle paddleLeft = new Paddle().setLeftPlayer(true).setPos(10, height*0.5).setPPos(10, height*0.5F);
+    Paddle paddleLeft = new Paddle().setLeftPlayer(true).setPos(10, height*0.5);
     addPaddle(paddleLeft);
 
-    Paddle paddleRight = new Paddle().setLeftPlayer(false).setPos(width-10, height*0.5).setPPos(width - 10, height*0.5F);
+    Paddle paddleRight = new Paddle().setLeftPlayer(false).setPos(width-10, height*0.5);
     addPaddle(paddleRight);
 
     scoreLeft = scoreRight = 0;
     running = flagRunning = false;
     
-    buttonList.add((Button)new Button("Paused", 150).setPos(width * 0.5F, height * 0.5F)); //ID: 0
-    buttonList.add((Button)new Button("Menu", 30).setPos(width * 0.5F + 70, height - 50));
+    buttonList.add(new Button("Paused", 150, width * 0.5F, height * 0.5F)); //ID: 0
+    buttonList.add(new Button("Menu", 30, width * 0.5F + 70, height - 50));
   }
 
   public void deinit() {

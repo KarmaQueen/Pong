@@ -4,7 +4,7 @@ class StateOptions extends State {
   
   public void init(Pong pong) {
     super.init(pong);
-    buttons.add((Button)new Button("Back").setSize(25).setOriginalSize(25).setEnlargedSize(30).setPos(width - 80, height + 30)); //ID: 1
+    buttons.add(new Button("Back", 25,width - 80, height + 30)); //ID: 1
   }
   
   public void deinit(){

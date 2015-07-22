@@ -38,11 +38,6 @@ public abstract class GameObject {
     return new Vector(px + dx * framestep, py + dy * framestep);
   }
   
-  
-  
-  
-  
-  
   //Setters
   public <T extends GameObject> T setPos(double x, double y) {
     if(constrictToScreen){
