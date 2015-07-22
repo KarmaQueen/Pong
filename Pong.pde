@@ -22,7 +22,7 @@ public void setup() {
   font = createFont("Minecraft.ttf", 50);
   r = new Random();
   frameRate(300);
-  textAlign(LEFT, TOP);
+  textAlign(CENTER, CENTER);
   setState(new StateMenu());
 }
 

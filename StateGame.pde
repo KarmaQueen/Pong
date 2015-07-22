@@ -46,8 +46,8 @@ public class StateGame extends State {
     noStroke();
     
     //Draws the score on the top of the screen
-    text(scoreLeft, Pong.halfwidth - textWidth("" + scoreRight) - 10, 10);
-    text(scoreRight, Pong.halfwidth + 14, 10);
+    text(scoreLeft,  Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30);
+    text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30);
     
     //Draws the input visualizer on the bottom of the screen.
     if(keys[0]) rect(Pong.halfwidth - 10, height - 11F, 5, 5);

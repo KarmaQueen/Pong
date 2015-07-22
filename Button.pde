@@ -1,9 +1,9 @@
 public class Button extends GameObject{
   
   private boolean isClicked;
+  private boolean isHovered;
   private String text;
-  private int size;
-  private int textWidth, textHeight;
+  private int size, originalSize, enlargedSize;
   private boolean flag;
   
   
@@ -15,49 +15,64 @@ public class Button extends GameObject{
   public Button(){
     isClicked = false;
     text = "";
-    size = 50;
+    size = enlargedSize = originalSize = 50;
     flag = false;
   }
   
   public void update(){
     super.update();
     
+    isHovered = mouseX >= getPosX() - textWidth(text) && mouseY >= getPosY() - size*0.5F && 
+                mouseX <= getPosX() + textWidth(text) && mouseY <= getPosY() + size*0.5F; 
+    
     //boolean flag is used so the button's click isn't registered multiple times.
     if(mousePressed){
       if(flag){
-        //Sees whether the mouse is in range of the button
-        if(mouseX >= getPosX() && mouseY >= getPosY() && 
-           mouseX <= getPosX() + textWidth(text) && mouseY <= getPosY() + size){
-          isClicked = true; 
-        }
+        if(isHovered) isClicked = true;
         flag = false;
       }
-    } else flag = true;
+    } else {
+      flag = true;
+      isClicked = false;
+    }
+    
+    setSize(isHovered? enlargedSize : originalSize);
+    
   }
   
   public void render(double framestep){
     super.render(framestep);
-    textAlign(LEFT, TOP);
-    textFont(Pong.font, 50);
+    textAlign(CENTER, CENTER);
+    textFont(Pong.font, size);
     text(text, (float)getPosX(), (float)getPosY());
   }
   
   //Setters
-  public void setSize(int size){
-    this.size = size;
+  public Button setSize(int n){
+    this.size = n;
+    return this;
   }
-  public void setText(String text){
+  public Button setText(String text){
     this.text = text;
+    return this;
   }
-  public Button setHitBox(int x, int y){
-    textWidth = x;
-    textHeight = y;
+  
+  public Button setOriginalSize(int n){
+    this.originalSize = n;
+    return this;
+  }
+  
+  public Button setEnlargedSize(int n){
+    this.enlargedSize = n;
     return this;
   }
   
   //Getters
   public boolean isClicked(){
     return isClicked;
+  }
+  public boolean isHovered(){
+    return isHovered;
   }
   
   
