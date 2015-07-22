@@ -16,6 +16,7 @@ public void setup() {
   keys = new boolean[9];
   halfwidth = width*0.5F;
   font = createFont("Minecraft.ttf", 50);
+  frameRate(300);
   
   setState(new StateMenu());
 }

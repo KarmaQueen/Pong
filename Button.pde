@@ -20,8 +20,6 @@ public class Button extends GameObject{
     flag = false;
   }
   
-  
-  
   public void update(){
     super.update();
     
