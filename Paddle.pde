@@ -42,10 +42,6 @@ public class Paddle extends GameObject{
     return this;
   }
   
-  public boolean constrictToScreen(){
-    return true;
-  }
-  
   //Setters
   public Paddle setSize(float w, float h) {
     paddleWidth = w;

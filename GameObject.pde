@@ -5,6 +5,7 @@ public abstract class GameObject {
 //  private double posX, posY, pPosX, pPosY;
   private Vector pos, pPos;
   private Color c;
+  private boolean constrictToScreen = false;
   
   public GameObject(){
     pos = new Vector();
@@ -36,16 +37,14 @@ public abstract class GameObject {
     return new Vector(px + dx * framestep, py + dy * framestep);
   }
   
-  //Override these if needed
-  public boolean constrictToScreen(){
-    return false;
-  }
+  
+  
   
   
   
   //Setters
   public GameObject setPos(double x, double y) {
-    if(constrictToScreen()){
+    if(constrictToScreen){
       x = Math.max(hboxX*0.5F, x);
       y = Math.max(hboxY*0.5F, y);
       x = Math.min(width -  hboxX*0.5F, x);
@@ -63,9 +62,20 @@ public abstract class GameObject {
     hboxY = y;
     return this;
   }
+  public GameObject setConstrictToScreen(boolean b){
+    constrictToScreen = b;
+    return this;
+  }
+  public GameObject setPPos(double x, double y){
+    pPos.setVec(x,y);
+    return this;
+  }
   
   //Getters
   public double getPosX(){ return pos.getX(); }
   public double getPosY(){ return pos.getY(); } 
   public Vector getPos() { return pos; }
+  public boolean constrictToScreen(){
+    return constrictToScreen;
+  }
 }
