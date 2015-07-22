@@ -54,10 +54,10 @@ public class StateGame extends State {
     if(keys[1]) rect(Pong.halfwidth - 10, height - 6F,  5, 5);
     if(keys[2]) rect(Pong.halfwidth - 15, height - 6F,  5, 5);
     if(keys[3]) rect(Pong.halfwidth -  5, height - 6F,  5, 5);
-    if(keys[4]) rect(Pong.halfwidth + 10, height - 11F, 5, 5);
-    if(keys[5]) rect(Pong.halfwidth + 10, height - 6F,  5, 5);
-    if(keys[6]) rect(Pong.halfwidth +  5, height - 6F,  5, 5);
-    if(keys[7]) rect(Pong.halfwidth + 15, height - 6F,  5, 5);
+    if(keys[4]) rect(Pong.halfwidth + 11, height - 11F, 5, 5);
+    if(keys[5]) rect(Pong.halfwidth + 11, height - 6F,  5, 5);
+    if(keys[6]) rect(Pong.halfwidth +  6, height - 6F,  5, 5);
+    if(keys[7]) rect(Pong.halfwidth + 16, height - 6F,  5, 5);
     
     //renders the gameObjects in the objectList.
     for(GameObject obj : objectList) obj.render(framestep);
