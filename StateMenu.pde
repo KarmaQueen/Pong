@@ -6,12 +6,12 @@ public class StateMenu extends State{
   public void init(Pong pong){
     super.init(pong);
     clickedButton = null;
-    buttons.add((Button)new Button("Play").setSize(50).setOriginalSize(50).setEnlargedSize(60).setPos(width - 100, height - 50)); //ID: 0
-    buttons.add((Button)new Button("Options").setSize(25).setOriginalSize(25).setEnlargedSize(30).setPos(100, height - 40)); //ID: 1
+    buttons.add((Button)new Button("Play").setSize(50).setOriginalSize(50).setEnlargedSize(60).setPos(width*0.5F, height - 50)); //ID: 0
+    buttons.add((Button)new Button("Options").setSize(25).setOriginalSize(25).setEnlargedSize(30).setPos(width - 220, height - 40)); //ID: 1
+    buttons.add((Button)new Button("Quit").setSize(25).setOriginalSize(25).setEnlargedSize(30).setPos(width - 80, height - 40));
   }
   
   public void deinit(){
-    
   }
   
   public void update(){
@@ -29,7 +29,15 @@ public class StateMenu extends State{
    */
   public void buttonAction(int id){
     switch(id){
-    case 0: game.setState(new StateGame()); //Start game
+    case 0: 
+      game.setState(new StateGame()); //Start game
+      break;
+    case 1: 
+      game.setState(new StateOptions()); //Open Menu
+      break;
+    case 2:
+      System.exit(0); //exits game
+      break;
     default: break;  
     }
   }
