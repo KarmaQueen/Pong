@@ -26,8 +26,8 @@ public class Button extends GameObject{
     if(mousePressed){
       if(flag){
         //Sees whether the mouse is in range of the button
-        if(mouseX >= getPosX() && mouseY >= getPosY() && 
-           mouseX <= getPosX() + textWidth(text) && mouseY <= getPosY() + size){
+        if(mouseX >= getPos().getX() && mouseY >= getPos().getY() && 
+           mouseX <= getPos().getX() + textWidth(text) && mouseY <= getPos().getY() + size){
           isClicked = true; 
         }
         flag = false;
@@ -39,7 +39,7 @@ public class Button extends GameObject{
     super.render(framestep);
     textAlign(LEFT, TOP);
     textFont(Pong.font, 50);
-    text(text, (float)getPosX(), (float)getPosY());
+    text(text, (float)getPos().getX(), (float)getPos().getY());
   }
   
   //Setters

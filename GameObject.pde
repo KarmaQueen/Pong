@@ -2,33 +2,38 @@ public abstract class GameObject {
   
   //hitbox
   private float hboxX, hboxY;
-  private double posX, posY, pPosX, pPosY;
+//  private double posX, posY, pPosX, pPosY;
+  private Vector pos, pPos;
   private Color c;
   
   public GameObject(){
+    pos = new Vector();
+    pPos = new Vector();
     c = new Color(255,255,255);
   }
   
   public void update() {
-    pPosX = posX;
-    pPosY = posY;
+//    pPosX = posX;
+//    pPosY = posY;
+    pPos.setVec(pos);
   }
 
   public void render(double framestep) {
     c.setFill();
   }
   
-  //Get the partial position of the game object's current position
-  protected double[] getPartialPos(double framestep) {
-    return getPartialPos(posX, posY, pPosX, pPosY, framestep);
+  //Get the partial position of the game object's current position usually for rendering
+  protected Vector getPartialPos(double framestep) {
+    return getPartialPos(pos, pPos, framestep);
+  }
+  
+  protected Vector getPartialPos(Vector vec, Vector pVec, double framestep) {
+    return getPartialPos(vec.getX(), vec.getY(), pVec.getX(), pVec.getY(), framestep);
   }
 
-  protected double[] getPartialPos(double x, double y, double px, double py, double framestep) {
-    double[] pos = new double[2];
+  protected Vector getPartialPos(double x, double y, double px, double py, double framestep) {
     double dx = x - px, dy = y - py;
-    pos[0] = px + dx * framestep;
-    pos[1] = py + dy * framestep;
-    return pos;
+    return new Vector(px + dx * framestep, py + dy * framestep);
   }
   
   //Override these if needed
@@ -42,8 +47,9 @@ public abstract class GameObject {
       x = Math.min(width -  hboxX*0.5F, x);
       y = Math.min(height - hboxY*0.5F, y);
     }
-    posX = x;
-    posY = y;
+//    posX = x;
+//    posY = y;
+    pos.setVec(x, y);
     return this;
   }
   
@@ -61,7 +67,7 @@ public abstract class GameObject {
   
   
   //Getters
-  public double getPosX(){ return posX; }
-  public double getPosY(){ return posY; } 
-  
+//  public double getPosX(){ return posX; }
+//  public double getPosY(){ return posY; } 
+  public Vector getPos() { return pos; }
 }

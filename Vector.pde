@@ -16,7 +16,23 @@ public class Vector {
     yCoord = y;
     return this;
   }
+  
+  public Vector setVec(Vector vec) {
+    xCoord = vec.getX();
+    yCoord = vec.getY();
+    return this;
+  }
+  
+  public double getX() {
+    return xCoord;
+  }
+  
+  public double getY() {
+    return yCoord;
+  }
 }
+
+//These methods can be accessed directly by all other classes
 
 Vector createVector(double x, double y) {
   return new Vector(x, y);

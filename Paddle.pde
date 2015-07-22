@@ -15,22 +15,22 @@ public class Paddle extends GameObject{
     
     //Updates the paddle's position by reading the input into the game.
     if(leftPlayer){
-      if(Pong.keys[0]) setPos(getPosX(), getPosY() - speed);
-      if(Pong.keys[1]) setPos(getPosX(), getPosY() + speed);
-      if(Pong.keys[2]) setPos(getPosX() - speed, getPosY());
-      if(Pong.keys[3]) setPos(getPosX() + speed, getPosY());
+      if(Pong.keys[0]) setPos(getPos().getX(), getPos().getY() - speed);
+      if(Pong.keys[1]) setPos(getPos().getX(), getPos().getY() + speed);
+      if(Pong.keys[2]) setPos(getPos().getX() - speed, getPos().getY());
+      if(Pong.keys[3]) setPos(getPos().getX() + speed, getPos().getY());
     } else {
-      if(Pong.keys[4]) setPos(getPosX(), getPosY() - speed);
-      if(Pong.keys[5]) setPos(getPosX(), getPosY() + speed);
-      if(Pong.keys[6]) setPos(getPosX() - speed, getPosY());
-      if(Pong.keys[7]) setPos(getPosX() + speed, getPosY());
+      if(Pong.keys[4]) setPos(getPos().getX(), getPos().getY() - speed);
+      if(Pong.keys[5]) setPos(getPos().getX(), getPos().getY() + speed);
+      if(Pong.keys[6]) setPos(getPos().getX() - speed, getPos().getY());
+      if(Pong.keys[7]) setPos(getPos().getX() + speed, getPos().getY());
     }
   }
 
   public void render(double framestep){
     super.render(framestep);
-    double[] pos = getPartialPos(framestep);
-    rect((float)pos[0], (float)pos[1], paddleWidth, paddleHeight);
+    Vector vec = getPartialPos(framestep);
+    rect((float)vec.getX(), (float)vec.getY(), paddleWidth, paddleHeight);
   }
   
   /** 
