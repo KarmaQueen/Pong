@@ -8,11 +8,10 @@ public class StateGame extends State {
   private ArrayList<GameObject> objectList = new ArrayList<GameObject>(); //list of all the game objects; paddles, balls, etc
   private ArrayList<Paddle> paddleList = new ArrayList<Paddle>(); //list of all the paddles
   private ArrayList<Ball> ballList = new ArrayList<Ball>(); //list of all the balls
-
+  private ArrayList<Button> buttonList = new ArrayList<Button>(); //list of all the buttons
   private float enterTime, pEnterTime, dET;
   private boolean running;
-  
-  private boolean runningFlag;
+  private boolean flagRunning;
 
   //could be used to load settings before starting the game, etc
   public StateGame() {
@@ -34,24 +33,25 @@ public class StateGame extends State {
     addPaddle((Paddle)paddleRight);
 
     scoreLeft = scoreRight = 0;
-    running = runningFlag = false;
+    running = flagRunning = false;
   }
 
   public void deinit() {
   }
 
   public void doUpdate() {
-    for (GameObject obj : paddleList) obj.update();
+    if(keys[8]){
+      if(flagRunning){
+        running = !running;
+        flagRunning = false;
+      }
+    } else flagRunning = true;
     
-    runningFlag = running;
-    running = keys[8];
-    
-    if(!running && runningFlag){
+    if(running){
+      for (GameObject obj : paddleList)
+        obj.update();
+    } else {
       
-    }
-    if(running && !runningFlag){
-      for(Ball b :ballList)
-        b.update();
     }
   }
 
