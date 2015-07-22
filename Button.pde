@@ -22,15 +22,15 @@ public class Button extends GameObject{
   public void update(){
     super.update();
     
-    isHovered = mouseX >= getPosX() - textWidth(text) && mouseY >= getPosY() - size*0.5F && 
-                mouseX <= getPosX() + textWidth(text) && mouseY <= getPosY() + size*0.5F; 
+    isHovered = mouseX >= getPos().getX() - textWidth(text) && mouseY >= getPos().getY() - size*0.5F && 
+                mouseX <= getPos().getX() + textWidth(text) && mouseY <= getPos().getY() + size*0.5F; 
     
     //boolean flag is used so the button's click isn't registered multiple times.
     if(mousePressed){
       if(flag){
         if(isHovered) isClicked = true;
+        }
         flag = false;
-      }
     } else {
       flag = true;
       isClicked = false;
@@ -44,7 +44,7 @@ public class Button extends GameObject{
     super.render(framestep);
     textAlign(CENTER, CENTER);
     textFont(Pong.font, size);
-    text(text, (float)getPosX(), (float)getPosY());
+    text(text, (float)getPos().getX(), (float)getPos().getY());
   }
   
   //Setters
