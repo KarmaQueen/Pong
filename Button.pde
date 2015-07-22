@@ -3,10 +3,9 @@ public class Button extends GameObject{
   private boolean isClicked;
   private String text;
   private int size;
-  
   private int textWidth, textHeight;
-  
   private boolean flag;
+  
   
   public Button(String text){
     this();
@@ -23,8 +22,10 @@ public class Button extends GameObject{
   public void update(){
     super.update();
     
+    //boolean flag is used so the button's click isn't registered multiple times.
     if(mousePressed){
       if(flag){
+        //Sees whether the mouse is in range of the button
         if(mouseX >= getPosX() && mouseY >= getPosY() && 
            mouseX <= getPosX() + textWidth(text) && mouseY <= getPosY() + size){
           isClicked = true; 
@@ -37,7 +38,7 @@ public class Button extends GameObject{
   public void render(double framestep){
     super.render(framestep);
     textAlign(LEFT, TOP);
-    textFont(font, 50);
+    textFont(Pong.font, 50);
     text(text, (float)getPosX(), (float)getPosY());
   }
   

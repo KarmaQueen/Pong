@@ -1,6 +1,6 @@
 /*
  * Color class.
- * When instantiating a new color, use new Color(red,green,blu);
+ * When instantiating a new color, use new Color(red,green,blue);
  *
  */
 public class Color{

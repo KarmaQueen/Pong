@@ -13,6 +13,7 @@ public class Paddle extends GameObject{
   public void update(){
     super.update();
     
+    //Updates the paddle's position by reading the input into the game.
     if(leftPlayer){
       if(Pong.keys[0]) setPos(getPosX(), getPosY() - speed);
       if(Pong.keys[1]) setPos(getPosX(), getPosY() + speed);
@@ -32,6 +33,10 @@ public class Paddle extends GameObject{
     rect((float)pos[0], (float)pos[1], paddleWidth, paddleHeight);
   }
   
+  /** 
+   * Sets whether this paddle is controlled by the left player or the right.
+   * Parameters: boolean b: if controlled by the left player, insert true. if not, false.
+   */
   public Paddle setLeftPlayer(boolean b){
     leftPlayer = b;
     return this;

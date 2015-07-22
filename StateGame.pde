@@ -15,9 +15,10 @@ public class StateGame extends State {
   
   public void init(Pong pong) {
     super.init(pong);
-//    Ball ball = new Ball();
-//    ball.setPos(100, 100);
-//    addBall(ball);
+    //Ball ball = new Ball();
+    //ball.setPos(100, 100);
+    //addBall(ball);
+
     GameObject paddleLeft = new Paddle().setLeftPlayer(true).setPos(10, height*0.5F);
     addPaddle((Paddle)paddleLeft);
     
@@ -57,6 +58,7 @@ public class StateGame extends State {
     if(keys[6]) rect(Pong.halfwidth +  5, height - 6F,  5, 5);
     if(keys[7]) rect(Pong.halfwidth + 15, height - 6F,  5, 5);
     
+    //renders the gameObjects in the objectList.
     for(GameObject obj : objectList) obj.render(framestep);
   }
   

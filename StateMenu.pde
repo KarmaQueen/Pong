@@ -25,9 +25,13 @@ public class StateMenu extends State{
     
   }
   
+  /**
+   *  Every time a button is clicked, this function runs, executing corresponding to the ID of the button given.
+   *  Parameters: int id: the parameter
+   */
   public void buttonAction(int id){
     switch(id){
-    case 0: game.setState(new StateGame());
+    case 0: game.setState(new StateGame()); //Start game
     default: break;  
     }
   }
