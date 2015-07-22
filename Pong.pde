@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public static final double MS_PER_UPDATE = 6;
+public static final double MS_PER_UPDATE = 7;
 
 public static Random r;
 
