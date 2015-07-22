@@ -95,7 +95,8 @@ public class StateGame extends State {
     }
   }
   
-    public void doExitingUpdate() {
+  public void doExitingUpdate() {
+      
   }
 
   public void doEnteringRender(double framestep) {
