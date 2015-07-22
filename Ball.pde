@@ -1,7 +1,9 @@
 public class Ball extends GameObject{
   
+  float speedX, speedY;
+  
   public Ball(){
-    
+    speedX = speedY = 4;
   }
   
   public void update(){

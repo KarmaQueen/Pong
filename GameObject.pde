@@ -1,10 +1,9 @@
 public abstract class GameObject {
   
-  private Color c;
-  
   //hitbox
   private float hboxX, hboxY;
   private double posX, posY, pPosX, pPosY;
+  private Color c;
   
   public GameObject(){
     c = new Color(255,255,255);
@@ -23,6 +22,7 @@ public abstract class GameObject {
   protected double[] getPartialPos(double framestep) {
     return getPartialPos(posX, posY, pPosX, pPosY, framestep);
   }
+
   protected double[] getPartialPos(double x, double y, double px, double py, double framestep) {
     double[] pos = new double[2];
     double dx = x - px, dy = y - py;
@@ -58,6 +58,7 @@ public abstract class GameObject {
     hboxY = y;
     return this;
   }
+  
   
   //Getters
   public double getPosX(){ return posX; }

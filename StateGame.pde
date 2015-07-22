@@ -18,6 +18,7 @@ public class StateGame extends State {
 //    addBall(ball);
     GameObject paddleLeft = new Paddle().setLeftPlayer(true).setPos(10, height*0.5F);
     addPaddle((Paddle)paddleLeft);
+    
     GameObject paddleRight = new Paddle().setLeftPlayer(false).setPos(width-10, height*0.5F);
     addPaddle((Paddle)paddleRight);
   }

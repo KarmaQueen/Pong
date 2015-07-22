@@ -10,8 +10,6 @@ public class Paddle extends GameObject{
     setHitbox(10,60);
   }
   
-  
-  
   public void update(){
     super.update();
     

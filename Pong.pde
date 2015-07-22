@@ -17,7 +17,7 @@ public void setup() {
   halfwidth = width*0.5F;
   font = createFont("Minecraft.ttf", 50);
   frameRate(300);
-  
+  textAlign(LEFT, TOP);
   setState(new StateMenu());
 }
 
