@@ -24,7 +24,6 @@ public abstract class State {
   
   
   public abstract void doUpdate();
-  
   public abstract void doEnteringUpdate();
   public abstract void doExitingUpdate();
   

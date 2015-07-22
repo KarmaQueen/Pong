@@ -6,6 +6,14 @@ public class Button extends GameObject{
   private int size, originalSize, enlargedSize;
   private boolean flag;
   
+  //Please use this constructor for initialisation
+  public Button(String text, int size){
+    this();
+    setText(text);
+    setSize(size);
+    setOriginalSize(size);
+    setEnlargedSize(size*6/5);
+  }
   
   public Button(String text){
     this();

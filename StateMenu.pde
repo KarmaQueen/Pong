@@ -7,9 +7,9 @@ public class StateMenu extends State{
   public void init(Pong pong){
     super.init(pong);
     clickedButton = null;
-    buttons.add((Button)new Button("Play").setSize(50).setOriginalSize(50).setEnlargedSize(60).setPos(width*0.5F, height + 50)); //ID: 0
-    buttons.add((Button)new Button("Options").setSize(25).setOriginalSize(25).setEnlargedSize(30).setPos(width - 220, height + 60)); //ID: 1
-    buttons.add((Button)new Button("Quit").setSize(25).setOriginalSize(25).setEnlargedSize(30).setPos(width - 80, height + 60));
+    buttons.add((Button)new Button("Play", 50).setPos(width*0.5F, height + 50)); //ID: 0
+    buttons.add((Button)new Button("Options", 25).setPos(width - 220, height + 60)); //ID: 1
+    buttons.add((Button)new Button("Quit", 25).setPos(width - 80, height + 60)); //ID: 2
   }
   
   public void deinit(){

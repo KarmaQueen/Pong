@@ -34,6 +34,9 @@ public class StateGame extends State {
 
     scoreLeft = scoreRight = 0;
     running = flagRunning = false;
+    
+    buttonList.add((Button)new Button("Paused", 150).setPos(width * 0.5F, height * 0.5F)); //ID: 0
+    buttonList.add((Button)new Button("Menu", 30).setPos(width * 0.5F + 70, height - 50));
   }
 
   public void deinit() {
@@ -47,24 +50,43 @@ public class StateGame extends State {
       }
     } else flagRunning = true;
     
+    //Runs when game is running AND not running
+    for (Paddle paddle : paddleList)
+        paddle.update();
+        
+    //Runs when game is running
     if(running){
-      for (GameObject obj : paddleList)
-        obj.update();
-    } else {
-      
+      for(Ball b : ballList)
+        b.update();
+    } else { //runs when game isn't running
+      Button b;
+      for(int i = 0; i < buttonList.size(); i++){
+        b = buttonList.get(i);
+        b.update();
+        if(b.isClicked()) buttonAction(i);
+      }
     }
   }
 
   public void doRender(double framestep) {
     background(0);
+    
+    //Draws pause text and other menu items
+    if(!running){
+      for(Button b : buttonList){
+        b.render(framestep);
+      }
+    
+    }
 
-    //draws a line, dividing the middle of the screen
+    //Draws a line, dividing the middle of the screen
     stroke(255);
     strokeWeight(3);
     line(Pong.halfwidth, 0, Pong.halfwidth, height);
     noStroke();
 
     //Draws the score on the top of the screen
+    textFont(font, 25);
     text(scoreLeft, Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30);
     text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30);
 
@@ -96,7 +118,8 @@ public class StateGame extends State {
   }
   
   public void doExitingUpdate() {
-      
+      exiting = false;
+      game.setState(nextState);
   }
 
   public void doEnteringRender(double framestep) {
@@ -116,7 +139,18 @@ public class StateGame extends State {
     doRender(framestep);
   }
 
-
+  public void buttonAction(int id){
+    switch(id){
+    case 0:
+      running = true; //continue running
+      break;
+    case 1:
+      exiting = true;
+      nextState = new StateMenu();
+      break;
+    default: break;  
+    }
+  }
 
 
 
