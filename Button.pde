@@ -38,6 +38,7 @@ public class Button extends GameObject{
   
   public void render(double framestep){
     super.render(framestep);
+    textAlign(LEFT, TOP);
     textFont(font, 50);
     text(text, (float)getPosX(), (float)getPosY());
   }

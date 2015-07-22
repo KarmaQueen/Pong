@@ -2,7 +2,7 @@ public static final double MS_PER_UPDATE = 6;
 
 private float halfwidth;
 private PFont font;
-private boolean keys[];
+private static boolean keys[];
 private double previous = System.currentTimeMillis();
 private double lag = 0.0;
 
@@ -16,7 +16,7 @@ public void setup() {
   keys = new boolean[9];
   halfwidth = width*0.5F;
   font = createFont("Minecraft.ttf", 50);
-  textAlign(LEFT, TOP);
+  
   setState(new StateMenu());
 }
 

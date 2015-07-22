@@ -1,24 +1,52 @@
 public class Paddle extends GameObject{
   
-  private float width, height;
+  private float speed = 4;
+  private float paddleWidth, paddleHeight;
+  private boolean leftPlayer;
   
   public Paddle(){
-    width = 20;
-    height = 20;
+    paddleWidth = 10;
+    paddleHeight = 60;
+    setHitbox(10,60);
   }
   
-  public void setSize(float w, float h) {
-    width = w;
-    height = h;
-  }
+  
   
   public void update(){
     super.update();
+    
+    if(leftPlayer){
+      if(Pong.keys[0]) setPos(getPosX(), getPosY() - speed);
+      if(Pong.keys[1]) setPos(getPosX(), getPosY() + speed);
+      if(Pong.keys[2]) setPos(getPosX() - speed, getPosY());
+      if(Pong.keys[3]) setPos(getPosX() + speed, getPosY());
+    } else {
+      if(Pong.keys[4]) setPos(getPosX(), getPosY() - speed);
+      if(Pong.keys[5]) setPos(getPosX(), getPosY() + speed);
+      if(Pong.keys[6]) setPos(getPosX() - speed, getPosY());
+      if(Pong.keys[7]) setPos(getPosX() + speed, getPosY());
+    }
   }
 
   public void render(double framestep){
     super.render(framestep);
     double[] pos = getPartialPos(framestep);
-    rect((float)pos[0], (float)pos[1], width, height);
+    rect((float)pos[0], (float)pos[1], paddleWidth, paddleHeight);
+  }
+  
+  public Paddle setLeftPlayer(boolean b){
+    leftPlayer = b;
+    return this;
+  }
+  
+  public boolean constrictToScreen(){
+    return true;
+  }
+  
+  //Setters
+  public Paddle setSize(float w, float h) {
+    paddleWidth = w;
+    paddleHeight = h;
+    return (Paddle)setHitbox(w,h);
   }
 }
