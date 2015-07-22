@@ -1,7 +1,11 @@
+import java.util.Random;
+
 public static final double MS_PER_UPDATE = 6;
 
-private float halfwidth;
-private PFont font;
+public static Random r;
+
+private static float halfwidth;
+private static PFont font;
 private static boolean keys[];
 private double previous = System.currentTimeMillis();
 private double lag = 0.0;
@@ -16,6 +20,7 @@ public void setup() {
   keys = new boolean[9];
   halfwidth = width*0.5F;
   font = createFont("Minecraft.ttf", 50);
+  r = new Random();
   frameRate(300);
   textAlign(LEFT, TOP);
   setState(new StateMenu());
