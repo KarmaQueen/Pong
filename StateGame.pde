@@ -10,6 +10,9 @@ public class StateGame extends State {
   private ArrayList<Ball> ballList = new ArrayList<Ball>(); //list of all the balls
 
   private float enterTime, pEnterTime, dET;
+  private boolean running;
+  
+  private boolean runningFlag;
 
   //could be used to load settings before starting the game, etc
   public StateGame() {
@@ -20,9 +23,9 @@ public class StateGame extends State {
     enterTime = pEnterTime = dET = 0;
 
     super.init(pong);
-    //Ball ball = new Ball();
-    //ball.setPos(100, 100);
-    //addBall(ball);
+    Ball ball = new Ball(12);
+    ball.setPos(width*0.5, height*0.5).setPPos(width*0.5, height*0.5);
+    addBall(ball);
 
     GameObject paddleLeft = new Paddle().setLeftPlayer(true).setPos(10, height*0.5).setPPos(10, height*0.5F);
     addPaddle((Paddle)paddleLeft);
@@ -31,13 +34,25 @@ public class StateGame extends State {
     addPaddle((Paddle)paddleRight);
 
     scoreLeft = scoreRight = 0;
+    running = runningFlag = false;
   }
 
   public void deinit() {
   }
 
   public void doUpdate() {
-    for (GameObject obj : objectList) obj.update();
+    for (GameObject obj : paddleList) obj.update();
+    
+    runningFlag = running;
+    running = keys[8];
+    
+    if(!running && runningFlag){
+      
+    }
+    if(running && !runningFlag){
+      for(Ball b :ballList)
+        b.update();
+    }
   }
 
   public void doRender(double framestep) {
@@ -79,8 +94,8 @@ public class StateGame extends State {
       }
     }
   }
-
-  public void doEnteringRender() {
+  
+    public void doExitingUpdate() {
   }
 
   public void doEnteringRender(double framestep) {
@@ -92,7 +107,7 @@ public class StateGame extends State {
     noStroke();
     text(scoreLeft, Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30*y/height);
     text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30*y/height);
-    
+    ellipse(halfwidth, height - 0.5*y, 12, 12);
     rect(10, height - y*0.5F, 10, 60);
     rect(width - 10, height - y*0.5F, 10, 60);
   }
@@ -100,8 +115,7 @@ public class StateGame extends State {
     doRender(framestep);
   }
 
-  public void doExitingUpdate() {
-  }
+
 
 
 
