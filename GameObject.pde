@@ -40,6 +40,10 @@ public abstract class GameObject {
   public boolean constrictToScreen(){
     return false;
   }
+  
+  
+  
+  //Setters
   public GameObject setPos(double x, double y) {
     if(constrictToScreen()){
       x = Math.max(hboxX*0.5F, x);
@@ -47,24 +51,18 @@ public abstract class GameObject {
       x = Math.min(width -  hboxX*0.5F, x);
       y = Math.min(height - hboxY*0.5F, y);
     }
-//    posX = x;
-//    posY = y;
     pos.setVec(x, y);
     return this;
   }
-  
-  //Setters
   public GameObject setColor(int red, int green, int blue){
     c.setColor(red,green,blue);
     return this;
   }
-  
   public GameObject setHitbox(float x, float y){
     hboxX = x;
     hboxY = y;
     return this;
   }
-  
   
   //Getters
   public double getPosX(){ return pos.getX(); }
