@@ -26,11 +26,11 @@ public class StateGame extends State {
     ball.setPos(width*0.5, height*0.5).setPPos(width*0.5, height*0.5);
     addBall(ball);
 
-    GameObject paddleLeft = new Paddle().setLeftPlayer(true).setPos(10, height*0.5).setPPos(10, height*0.5F);
-    addPaddle((Paddle)paddleLeft);
+    Paddle paddleLeft = new Paddle().setLeftPlayer(true).setPos(10, height*0.5).setPPos(10, height*0.5F);
+    addPaddle(paddleLeft);
 
-    GameObject paddleRight = new Paddle().setLeftPlayer(false).setPos(width-10, height*0.5).setPPos(width - 10, height*0.5F);
-    addPaddle((Paddle)paddleRight);
+    Paddle paddleRight = new Paddle().setLeftPlayer(false).setPos(width-10, height*0.5).setPPos(width - 10, height*0.5F);
+    addPaddle(paddleRight);
 
     scoreLeft = scoreRight = 0;
     running = flagRunning = false;
@@ -179,6 +179,10 @@ public class StateGame extends State {
   }
   public void setScoreRight(int n) { 
     scoreRight = n;
+  }
+  
+  public boolean getPaused() {
+    return !running;
   }
 }
 

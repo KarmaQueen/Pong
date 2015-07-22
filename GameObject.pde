@@ -33,6 +33,7 @@ public abstract class GameObject {
   }
 
   protected Vector getPartialPos(double x, double y, double px, double py, double framestep) {
+    if(currentState.getPaused()) return new Vector(x, y);
     double dx = x - px, dy = y - py;
     return new Vector(px + dx * framestep, py + dy * framestep);
   }
@@ -43,7 +44,7 @@ public abstract class GameObject {
   
   
   //Setters
-  public GameObject setPos(double x, double y) {
+  public <T extends GameObject> T setPos(double x, double y) {
     if(constrictToScreen){
       x = Math.max(hboxX*0.5F, x);
       y = Math.max(hboxY*0.5F, y);
@@ -51,24 +52,24 @@ public abstract class GameObject {
       y = Math.min(height - hboxY*0.5F, y);
     }
     pos.setVec(x, y);
-    return this;
+    return (T)this;
   }
-  public GameObject setColor(int red, int green, int blue){
+  public <T extends GameObject> T setPPos(double x, double y){
+    pPos.setVec(x,y);
+    return (T)this;
+  }
+  public <T extends GameObject> T setColor(int red, int green, int blue){
     c.setColor(red,green,blue);
-    return this;
+    return (T)this;
   }
-  public GameObject setHitbox(float x, float y){
+  public <T extends GameObject> T setHitbox(float x, float y){
     hboxX = x;
     hboxY = y;
-    return this;
+    return (T)this;
   }
-  public GameObject setConstrictToScreen(boolean b){
+  public <T extends GameObject> T setConstrictToScreen(boolean b){
     constrictToScreen = b;
-    return this;
-  }
-  public GameObject setPPos(double x, double y){
-    pPos.setVec(x,y);
-    return this;
+    return (T)this;
   }
   
   //Getters

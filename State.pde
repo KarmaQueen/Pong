@@ -41,4 +41,9 @@ public abstract class State {
   
   public abstract void doEnteringRender(double framestep);
   public abstract void doExitingRender(double framestep);
+  
+  //method that can be overridden when needed for states that will pause the game; used for smooth movements, etc
+  public boolean getPaused() {
+    return false;
+  }
 }
