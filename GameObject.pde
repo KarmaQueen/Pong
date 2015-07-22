@@ -2,7 +2,6 @@ public abstract class GameObject {
   
   //hitbox
   private float hboxX, hboxY;
-//  private double posX, posY, pPosX, pPosY;
   private Vector pos, pPos;
   private Color c;
   
@@ -13,8 +12,6 @@ public abstract class GameObject {
   }
   
   public void update() {
-//    pPosX = posX;
-//    pPosY = posY;
     pPos.setVec(pos);
   }
 
@@ -40,34 +37,30 @@ public abstract class GameObject {
   public boolean constrictToScreen(){
     return false;
   }
-  public GameObject setPos(double x, double y) {
+  public <T extends GameObject> T setPos(double x, double y) {
     if(constrictToScreen()){
       x = Math.max(hboxX*0.5F, x);
       y = Math.max(hboxY*0.5F, y);
       x = Math.min(width -  hboxX*0.5F, x);
       y = Math.min(height - hboxY*0.5F, y);
     }
-//    posX = x;
-//    posY = y;
     pos.setVec(x, y);
-    return this;
+    return (T)this;
   }
   
   //Setters
-  public GameObject setColor(int red, int green, int blue){
+  public <T extends GameObject> T setColor(int red, int green, int blue){
     c.setColor(red,green,blue);
-    return this;
+    return (T)this;
   }
   
-  public GameObject setHitbox(float x, float y){
+  public <T extends GameObject> T setHitbox(float x, float y){
     hboxX = x;
     hboxY = y;
-    return this;
+    return (T)this;
   }
   
   
   //Getters
-//  public double getPosX(){ return posX; }
-//  public double getPosY(){ return posY; } 
   public Vector getPos() { return pos; }
 }
