@@ -28,7 +28,7 @@ public class StateMenu extends State{
   public void buttonAction(int id){
     switch(id){
     case 0: game.setState(new StateGame());
-    default: break;  
+    default: break;
     }
   }
   

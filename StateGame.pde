@@ -16,9 +16,10 @@ public class StateGame extends State {
 //    Ball ball = new Ball();
 //    ball.setPos(100, 100);
 //    addBall(ball);
-//    Paddle paddle = new Paddle();
-//    paddle.setPos(600, 300);
-//    addPaddle(paddle);
+    Paddle rightPaddle = new Paddle().setSide(true).setPos(width * 0.75F, height * 0.5F);
+    Paddle leftPaddle = new Paddle().setSide(false).setPos(width * 0.25F, height * 0.5F);
+    addPaddle(rightPaddle);
+    addPaddle(leftPaddle);
   }
   
   public void deinit() {

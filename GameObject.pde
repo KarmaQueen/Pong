@@ -1,7 +1,7 @@
 public abstract class GameObject {
   
+  protected double posX, posY, pPosX, pPosY;
   private Color c;
-  private double posX, posY, pPosX, pPosY;
   
   public GameObject(){
     c = new Color(255,255,255);
@@ -21,10 +21,10 @@ public abstract class GameObject {
     c.setFill();
   }
 
-  public GameObject setPos(double x, double y) {
+  public <T extends GameObject> T setPos(double x, double y) {
     posX = x;
     posY = y;
-    return this;
+    return (T)this;
   }
   
   //Get the partial position of the game object's current position
