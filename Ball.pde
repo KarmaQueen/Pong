@@ -1,6 +1,7 @@
 public class Ball extends GameObject{
   
-  private float speedX, speedY;
+  private Vector vel;
+  private float speed, increment;
   private float size;
   
   public Ball(float size){
@@ -10,26 +11,50 @@ public class Ball extends GameObject{
   }
   
   public Ball(){
-    speedX = speedY = 4;
+    speed = 5;
+    vel = new Vector(Math.random() - 0.5D, Math.random() - 0.5D).normalise(speed);
     size = 12;
     setHitbox(size, size);
+    increment = 0.1F;
   }
   
   public void update(){
     super.update();
     
-    if(getPosX() <= size*0.5F) speedX = Math.abs(speedX);
-    if(getPosX() >= width - size*0.5F) speedX = -Math.abs(speedX);
-    if(getPosY() <= size*0.5F) speedY = Math.abs(speedY);
-    if(getPosY() >= height - size*0.5F) speedY = -Math.abs(speedY);
+    if(getPosX() <= size*0.5F){
+      vel.setX(Math.abs(vel.getX()));
+      setSpeed(speed + increment);
+    }
+    if(getPosX() >= width - size*0.5F){
+      vel.setX(-Math.abs(vel.getX()));
+      setSpeed(speed + increment);
+    }
+    if(getPosY() <= size*0.5F){
+      vel.setY(Math.abs(vel.getY()));
+      setSpeed(speed + increment);
+    }
+    if(getPosY() >= height - size*0.5F){
+      vel.setY(-Math.abs(vel.getY()));
+      setSpeed(speed + increment);
+    }
     
-    setPos(getPosX() + speedX, getPosY() + speedY);
+    setPos(getPosX() + vel.getX(), getPosY() + vel.getY());
   }
 
   public void render(double framestep){
     super.render(framestep);
     Vector vec = getPartialPos(framestep);
     ellipse((float)vec.getX(), (float)vec.getY(), size, size);
+  }
+  
+  public Ball setSpeed(float f){
+    speed = f;
+    vel = vel.normalise(f);
+    return this;
+  }
+  
+  public float getSpeed(){
+    return speed;
   }
   
   public float getSize(){
