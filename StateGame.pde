@@ -35,8 +35,8 @@ public class StateGame extends State {
     scoreLeft = scoreRight = 0;
     running = flagRunning = false;
     
-    buttonList.add(new Button("Paused", 150, width * 0.5F, height * 0.5F)); //ID: 0
-    buttonList.add(new Button("Menu", 30, width * 0.5F + 70, height - 50));
+    buttonList.add(new Button("Paused", 50, width * 0.5F, height - 60)); //ID: 0
+    buttonList.add(new Button("Menu", 30, width * 0.5F + 200, height - 50));
   }
 
   public void deinit() {
@@ -118,8 +118,20 @@ public class StateGame extends State {
   }
   
   public void doExitingUpdate() {
+    
+    pEnterTime = enterTime;
+    enterTime -= 10;
+    
+    for(Paddle p : paddleList){
+      p.setPos(p.getPosX(), p.getPosY() + enterTime);
+      p.update();
+    }
+    
+    if (enterTime <= 0) {
       exiting = false;
       game.setState(nextState);
+    }
+   
   }
 
   public void doEnteringRender(double framestep) {
@@ -136,7 +148,18 @@ public class StateGame extends State {
     rect(width - 10, height - y*0.5F, 10, 60);
   }
   public void doExitingRender(double framestep) {
-    doRender(framestep);
+    background(0);
+    stroke(255);
+    strokeWeight(3);
+    float y = (float)(enterTime + dET*framestep);
+    line(Pong.halfwidth, 0, Pong.halfwidth, y);
+    noStroke();
+    text(scoreLeft, Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30*y/height);
+    text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30*y/height);
+    ellipse(halfwidth, height - 0.5*y, 12, 12);
+    for(Paddle p : paddleList){
+      p.render(framestep);
+    }
   }
 
   public void buttonAction(int id){
@@ -147,6 +170,9 @@ public class StateGame extends State {
     case 1:
       exiting = true;
       nextState = new StateMenu();
+      for(Paddle p : paddleList)
+        p.setConstrictToScreen(false);
+      
       break;
     default: break;  
     }
