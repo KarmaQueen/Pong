@@ -50,11 +50,6 @@ public class Ball extends GameObject{
     return false;
   }
   
-  public boolean ballBeyondPaddle() {
-    if(getPosX() <= size*0.5F || getPosY() >= width - size*0.5F) return true;
-    return false;
-  }
-  
   public boolean collidesWithPaddle() {
     //temp
     return false;
