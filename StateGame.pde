@@ -58,7 +58,7 @@ public class StateGame extends State {
     if(running){
       for(Ball b : ballList){
         b.update();
-        if(b.positionOutOfBounds()){
+        if(b.ballBeyondPaddle()){
           if(b.getPosX() < width*0.5F) scoreRight++;
           else scoreLeft++;
           
