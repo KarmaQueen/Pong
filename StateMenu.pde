@@ -10,6 +10,7 @@ public class StateMenu extends State{
     buttons.add(new Button("Play", 50, width*0.5F, height + 50));
     buttons.add(new Button("Options", 25, width - 220, height + 60)); //ID: 1
     buttons.add(new Button("Quit", 25, width - 80, height + 60)); //ID: 2
+    buttons.add(new Button("Controls: W, S | Up, Down | SPACE", 15, 170, height + 65));
   }
   
   public void deinit(){

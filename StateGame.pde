@@ -22,7 +22,7 @@ public class StateGame extends State {
     enterTime = pEnterTime = dET = 0;
 
     super.init(pong);
-    Ball ball = new Ball(12);
+    Ball ball = new Ball(Pong.options.get(4).getValue());
     ball.setPos(width*0.5, height*0.5).setPPos(width*0.5, height*0.5);
     addBall(ball);
 
@@ -143,7 +143,7 @@ public class StateGame extends State {
     noStroke();
     text(scoreLeft, Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30*y/height);
     text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30*y/height);
-    ellipse(halfwidth, height - 0.5*y, 12, 12);
+    ellipse(halfwidth, height - 0.5*y, Pong.options.get(4).getValue(), Pong.options.get(4).getValue());
     rect(10, height - y*0.5F, 10, 60);
     rect(width - 10, height - y*0.5F, 10, 60);
   }
@@ -156,7 +156,7 @@ public class StateGame extends State {
     noStroke();
     text(scoreLeft, Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30*y/height);
     text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30*y/height);
-    ellipse(halfwidth, height - 0.5*y, 12, 12);
+    ellipse(halfwidth, height - 0.5*y, Pong.options.get(4).getValue(), Pong.options.get(4).getValue());
     for(Paddle p : paddleList){
       p.render(framestep);
     }

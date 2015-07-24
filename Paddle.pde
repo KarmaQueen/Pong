@@ -6,7 +6,7 @@ public class Paddle extends GameObject{
   
   public Paddle(){
     paddleWidth = 10;
-    paddleHeight = 60;
+    paddleHeight = Pong.options.get(3).getValue();
     setHitbox(10,60);
     
     speed = Pong.options.get(0).getValue();

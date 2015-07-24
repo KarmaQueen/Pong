@@ -22,7 +22,7 @@ public void setup() {
   smooth();
   rectMode(CENTER);
   noStroke();
-  keys = new boolean[9];
+  keys = new boolean[10];
   halfwidth = width*0.5F;
   font = createFont("Minecraft.ttf", 50);
   r = new Random();
@@ -33,6 +33,9 @@ public void setup() {
   //add options here
   options.add(new Option("Paddle Speed", 5, 0.1, 50));
   options.add(new Option("Ball Speed", 3, 0.1, 50));
+  options.add(new Option("Ball Speed Increase", 1, 0.1, 50));
+  options.add(new Option("Paddle Size", 60, 0.1, 500));
+  options.add(new Option("Ball Size", 12, 0.1, 50));
 }
 
 public void draw() {
@@ -60,6 +63,7 @@ public void keyPressed() {
   if(keyCode == LEFT)          keys[6] = true;
   if(keyCode == RIGHT)         keys[7] = true;
   if(key == ' ')               keys[8] = true;
+  if(keyCode == SHIFT)         keys[9] = true;
 }
 
 public void keyReleased() {
@@ -72,6 +76,7 @@ public void keyReleased() {
   if(keyCode == LEFT)          keys[6] = false;
   if(keyCode == RIGHT)         keys[7] = false;
   if(key == ' ')               keys[8] = false;
+  if(keyCode == SHIFT)         keys[9] = false;
 }
 
 public void render(double framestep) {

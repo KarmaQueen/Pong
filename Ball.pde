@@ -12,28 +12,28 @@ public class Ball extends GameObject{
   
   public Ball(){
     speed = Pong.options.get(1).getValue();
+    increment = Pong.options.get(2).getValue();
     vel = new Vector(Math.random() - 0.5D, Math.random() - 0.5D).normalise(speed);
     size = 12;
     setHitbox(size, size);
-    increment = 0.1F;
   }
   
   private void handleWallCollision() {
     if(getPosX() <= size*0.5F){
       vel.setX(Math.abs(vel.getX()));
-      setSpeed(speed + increment);
+      setSpeed(speed + increment/10);
     }
     if(getPosX() >= width - size*0.5F){
       vel.setX(-Math.abs(vel.getX()));
-      setSpeed(speed + increment);
+      setSpeed(speed + increment/10);
     }
     if(getPosY() <= size*0.5F){
       vel.setY(Math.abs(vel.getY()));
-      setSpeed(speed + increment);
+      setSpeed(speed + increment/10);
     }
     if(getPosY() >= height - size*0.5F){
       vel.setY(-Math.abs(vel.getY()));
-      setSpeed(speed + increment);
+      setSpeed(speed + increment/10);
     }
   }
   
