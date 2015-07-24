@@ -49,16 +49,24 @@ public class Ball extends GameObject{
     return false;
   }
   
+  public boolean collidesWithPaddle() {
+    //temp
+    return false;
+  }
+  
   private void handlePaddleCollision() {
     double predX = getPosX() + vel.getX(), predY = getPosY() + vel.getY();
     if(positionOutOfBounds()) return; //ball is going to collide anyways
     
     double d = Math.sqrt(predX * predX + predY * predY);
-    int times = (int)(d / 1D);
+    int times = (int)(d / 10D);
     double offsetX = predX / times, offsetY = predY / times;
     for(int i = 0; i < times; i++) {
       double x = getPosX() + offsetX * i, y = getPosY() + offsetY * i;
-      
+      if(collidesWithPaddle()) {
+        //change direction
+        break;
+      }
     }
   }
   
