@@ -18,9 +18,7 @@ public class Ball extends GameObject{
     increment = 0.1F;
   }
   
-  public void update(){
-    super.update();
-    
+  private void handleWallCollision() {
     if(getPosX() <= size*0.5F){
       vel.setX(Math.abs(vel.getX()));
       setSpeed(speed + increment);
@@ -37,6 +35,26 @@ public class Ball extends GameObject{
       vel.setY(-Math.abs(vel.getY()));
       setSpeed(speed + increment);
     }
+  }
+  
+  public boolean positionOutOfBounds(double x, double y) {
+    if(getPosX() <= size*0.5F || getPosX() >= width - size*0.5F) return true;
+    if(getPosY() <= size*0.5F || getPosY() >= height - size*0.5F) return true;
+    return false;
+  }
+  
+  private void handlePaddleCollision() {
+    double predX = getPosX() + vel.getX(), predY = getPosY() + vel.getY();
+    if(positionOutOfBounds(predX, predY)) return; //ball is going to collide anyways
+    
+    
+  }
+  
+  public void update(){
+    super.update();
+    
+    handleWallCollision();
+    handlePaddleCollision();
     
     setPos(getPosX() + vel.getX(), getPosY() + vel.getY());
   }
