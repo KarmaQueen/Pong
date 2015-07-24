@@ -1,10 +1,23 @@
 class StateOptions extends State {
   
   private ArrayList<Button> buttons = new ArrayList<Button>();
+  private ArrayList<Button> incrementDecrement = new ArrayList<Button>();
+  private boolean flag;
+  
+  DecimalFormat df = new DecimalFormat("#.#");
   
   public void init(Pong pong) {
     super.init(pong);
     buttons.add(new Button("Back", 25,width - 80, height + 30)); //ID: 1
+    
+    for(int i = 0; i < Pong.options.size(); i++){
+      //sets the position of the Option text
+      float ht = 50 + i*50;
+      Pong.options.get(i).setPos(250, ht);
+      buttons.add(new Button("<", 40, width - 220, ht));
+      buttons.add(new Button(df.format(Pong.options.get(i).getValue()), 40, width - 140, ht));
+      buttons.add(new Button(">", 40, width - 60, ht));
+    }
   }
   
   public void deinit(){
@@ -12,11 +25,28 @@ class StateOptions extends State {
   }
   
   public void doUpdate(){
+    //THIS PART IS WEIRD
     Button b;
+    if(mousePressed){
+      if(flag){
+      for(int i = 0; i < buttons.size(); i++){
+          flag = false;
+          b = buttons.get(i);
+          if(b.isHovered()){
+            buttonAction(i);
+          }
+        }
+      }
+    } else flag = true;
+    //END OF WEIRD PART
+    
     for(int i = 0; i < buttons.size(); i++){
       b = buttons.get(i);
       b.update();
       if(b.isClicked()) buttonAction(i);
+    }
+    for(Option o : Pong.options){
+      o.update();
     }
   }
   
@@ -30,8 +60,20 @@ class StateOptions extends State {
       exiting = true;
       nextState = new StateMenu(); //Back to Menu
       break;
+    case 1: case 4:case 7: case 10: case 13: case 16: case 19: case 22:  
+      changeOptionVal(Pong.options.get((id - 1)/3), -0.1F);
+      buttons.get(id + 1).setText(df.format(Pong.options.get((id - 1)/3).getValue()));
+      break;
+    case 3: case 6:case 9: case 12: case 15: case 18: case 21: case 24:  
+      changeOptionVal(Pong.options.get((id - 1)/3), 0.1F);
+      buttons.get(id - 1).setText(df.format(Pong.options.get((id - 1)/3).getValue()));
+      break;
     default: break;  
     }
+  }
+  
+  private void changeOptionVal(Option o, float change){
+    o.setValue(o.getValue() + change);
   }
   
   //IMPLEMENT
@@ -57,5 +99,7 @@ class StateOptions extends State {
   public void doRender(double framestep){
     background(0);
     for(Button b : buttons) b.render(framestep);
+    
+    for(Option o : Pong.options) o.render(framestep);
   } 
 }

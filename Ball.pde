@@ -11,7 +11,7 @@ public class Ball extends GameObject{
   }
   
   public Ball(){
-    speed = 5;
+    speed = Pong.options.get(1).getValue();
     vel = new Vector(Math.random() - 0.5D, Math.random() - 0.5D).normalise(speed);
     size = 12;
     setHitbox(size, size);

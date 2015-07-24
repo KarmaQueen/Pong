@@ -1,6 +1,6 @@
 public class Paddle extends GameObject{
   
-  private float speed = 4;
+  private float speed;
   private float paddleWidth, paddleHeight;
   private boolean leftPlayer;
   
@@ -8,6 +8,8 @@ public class Paddle extends GameObject{
     paddleWidth = 10;
     paddleHeight = 60;
     setHitbox(10,60);
+    
+    speed = Pong.options.get(0).getValue();
   }
   
   public void update(){

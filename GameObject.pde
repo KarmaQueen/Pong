@@ -49,6 +49,9 @@ public abstract class GameObject {
     pos.setVec(x, y);
     return (T)this;
   }
+  public <T extends GameObject> T setPos(Vector v){
+    return setPos(v.getX(), v.getY());
+  }
   public <T extends GameObject> T setPPos(double x, double y){
     pPos.setVec(x,y);
     return (T)this;

@@ -1,6 +1,9 @@
 import java.util.Random;
+import java.text.DecimalFormat;
 
 public static final double MS_PER_UPDATE = 7;
+
+public static ArrayList<Option> options = new ArrayList<Option>();
 
 public static Random r;
 
@@ -11,6 +14,8 @@ private double previous = System.currentTimeMillis();
 private double lag = 0.0;
 
 private State currentState;
+
+
 
 public void setup() {
   size(800, 450);
@@ -24,6 +29,10 @@ public void setup() {
   frameRate(300);
   textAlign(CENTER, CENTER);
   setState(new StateMenu());
+  
+  //add options here
+  options.add(new Option("Paddle Speed", 5, 0.1, 50));
+  options.add(new Option("Ball Speed", 3, 0.1, 50));
 }
 
 public void draw() {
