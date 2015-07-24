@@ -45,7 +45,8 @@ public class Ball extends GameObject{
   }
   
   public boolean positionOutOfBounds() {
-    if(getPosX() <= size*0.5F || getPosX() >= width - size*0.5F) return true;
+    if(x <= size*0.5F || x >= width - size*0.5F) return true;
+    if(y <= size*0.5F || y >= height - size*0.5F) return true;
     return false;
   }
   
