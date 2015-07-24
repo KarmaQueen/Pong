@@ -47,7 +47,13 @@ public class Ball extends GameObject{
     double predX = getPosX() + vel.getX(), predY = getPosY() + vel.getY();
     if(positionOutOfBounds(predX, predY)) return; //ball is going to collide anyways
     
-    
+    double d = MathHelper.sqrt(predX * predX + predY * predY);
+    int times = (int)(d / 1D);
+    double offsetX = predX / time, offsetY = predY / time;
+    for(int i = 0; i < times; i++) {
+      double x = getPosX() + offsetX * i, y = getPosY() + offsetY * i;
+      
+    }
   }
   
   public void update(){
