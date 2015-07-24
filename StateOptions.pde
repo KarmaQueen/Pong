@@ -29,13 +29,13 @@ class StateOptions extends State {
     Button b;
     if(mousePressed){
       if(flag){
-      for(int i = 0; i < buttons.size(); i++){
-          flag = false;
+        for(int i = 0; i < buttons.size(); i++){
           b = buttons.get(i);
           if(b.isHovered()){
             buttonAction(i);
           }
         }
+        flag = false;
       }
     } else flag = true;
     //END OF WEIRD PART
@@ -55,6 +55,7 @@ class StateOptions extends State {
    *  Parameters: int id: the parameter
    */
   public void buttonAction(int id){
+    if(!flag) return;
     switch(id){
     case 0:
       exiting = true;
