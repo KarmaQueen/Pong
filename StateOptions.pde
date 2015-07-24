@@ -1,7 +1,6 @@
 class StateOptions extends State {
   
   private ArrayList<Button> buttons = new ArrayList<Button>();
-  private ArrayList<Button> incrementDecrement = new ArrayList<Button>();
   private boolean flag;
   
   private float enterTime = 100;
@@ -10,7 +9,7 @@ class StateOptions extends State {
   
   public void init(Pong pong) {
     super.init(pong);
-    buttons.add(new Button("Back", 25,width - 80, height + 30)); //ID: 1
+    buttons.add(new Button("Back", 25, width - 80, height + 30)); //ID: 1
     
     for(int i = 0; i < Pong.options.size(); i++){
       //sets the position of the Option text
@@ -20,6 +19,8 @@ class StateOptions extends State {
       buttons.add(new Button(df.format(Pong.options.get(i).getValue()), 40, width - 140 + enterTime, ht));
       buttons.add(new Button(">",                                       40, width - 60  + enterTime, ht));
     }
+    
+    buttons.add(new Button("Reset", 25, width - 160 , height + 30)); //ID: 19
   }
   
   public void deinit(){
@@ -63,13 +64,25 @@ class StateOptions extends State {
       exiting = true;
       nextState = new StateMenu(); //Back to Menu
       break;
-    case 1: case 4:case 7: case 10: case 13: case 16: case 19: case 22:  
+    case 1: case 4:case 7: case 10: case 13: case 16:
       changeOptionVal(Pong.options.get((id - 1)/3), keys[9]?-1F:-0.1F);
       buttons.get(id + 1).setText(df.format(Pong.options.get((id - 1)/3).getValue()));
       break;
-    case 3: case 6:case 9: case 12: case 15: case 18: case 21: case 24:  
+    case 3: case 6:case 9: case 12: case 15: case 18:
       changeOptionVal(Pong.options.get((id - 1)/3), keys[9]?1F:0.1F);
       buttons.get(id - 1).setText(df.format(Pong.options.get((id - 1)/3).getValue()));
+      break;
+    case 19:
+      options.get(0).setValue(5);
+      options.get(1).setValue(3);
+      options.get(2).setValue(1);
+      options.get(3).setValue(60);
+      options.get(4).setValue(12);
+      int index = 0;
+      for(int i = 2; i < 19; i += 3){
+        buttons.get(i).setText(df.format(Pong.options.get(index).getValue()));
+        index++;
+      }
       break;
     default: break;  
     }
@@ -82,6 +95,8 @@ class StateOptions extends State {
   //IMPLEMENT
   public void doEnteringUpdate(){
     Button b = buttons.get(0);
+    b.setPos(b.getPosX(), b.getPosY() - 4);
+    b = buttons.get(19);
     b.setPos(b.getPosX(), b.getPosY() - 4);
     if(b.getPosY() <= height - 40) entering = false;
     
@@ -96,6 +111,8 @@ class StateOptions extends State {
   
   public void doExitingUpdate(){
     Button b = buttons.get(0);
+    b.setPos(b.getPosX(), b.getPosY() + 4);
+    b = buttons.get(19);
     b.setPos(b.getPosX(), b.getPosY() + 4);
     
     if(b.getPosY() >= height + 30) game.setState(nextState);

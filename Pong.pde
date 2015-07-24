@@ -36,6 +36,7 @@ public void setup() {
   options.add(new Option("Ball Speed Increase", 1, 0.1, 50));
   options.add(new Option("Paddle Size", 60, 0.1, 500));
   options.add(new Option("Ball Size", 12, 0.1, 50));
+  options.add(new Option("Paddle Width", -99, -99, -99));
 }
 
 public void draw() {
