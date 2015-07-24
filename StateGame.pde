@@ -56,8 +56,18 @@ public class StateGame extends State {
         
     //Runs when game is running
     if(running){
-      for(Ball b : ballList)
+      for(Ball b : ballList){
         b.update();
+        if(b.positionOutOfBounds()){
+          if(b.getPosX() < width*0.5F) scoreRight++;
+          else scoreLeft++;
+          
+          //resets ball
+          b.resetBall();
+          running = false;
+        }
+      }
+      
     } else { //runs when game isn't running
       Button b;
       for(int i = 0; i < buttonList.size(); i++){

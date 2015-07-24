@@ -13,9 +13,16 @@ public class Ball extends GameObject{
   public Ball(){
     speed = Pong.options.get(1).getValue();
     increment = Pong.options.get(2).getValue();
-    vel = new Vector(Math.random() - 0.5D, Math.random() - 0.5D).normalise(speed);
+    vel = new Vector(3*(Math.random() - 0.5D), Math.random() - 0.5D).normalise(speed);
     size = 12;
     setHitbox(size, size);
+  }
+  
+  public void resetBall(){
+    setPos(width*0.5F, height*0.5F);
+    speed = Pong.options.get(1).getValue();
+    increment = Pong.options.get(2).getValue();
+    vel = new Vector(3*(Math.random() - 0.5D), Math.random() - 0.5D).normalise(speed);
   }
   
   private void handleWallCollision() {
@@ -37,15 +44,14 @@ public class Ball extends GameObject{
     }
   }
   
-  public boolean positionOutOfBounds(double x, double y) {
+  public boolean positionOutOfBounds() {
     if(getPosX() <= size*0.5F || getPosX() >= width - size*0.5F) return true;
-    if(getPosY() <= size*0.5F || getPosY() >= height - size*0.5F) return true;
     return false;
   }
   
   private void handlePaddleCollision() {
     double predX = getPosX() + vel.getX(), predY = getPosY() + vel.getY();
-    if(positionOutOfBounds(predX, predY)) return; //ball is going to collide anyways
+    if(positionOutOfBounds()) return; //ball is going to collide anyways
     
     double d = Math.sqrt(predX * predX + predY * predY);
     int times = (int)(d / 1D);
