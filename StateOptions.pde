@@ -73,11 +73,12 @@ class StateOptions extends State {
       buttons.get(id - 1).setText(df.format(Pong.options.get((id - 1)/3).getValue()));
       break;
     case 19:
-      options.get(0).setValue(5);
-      options.get(1).setValue(3);
-      options.get(2).setValue(1);
-      options.get(3).setValue(60);
-      options.get(4).setValue(12);
+      options.get(0).setValue(options.get(0).getDefaultVal());
+      options.get(1).setValue(options.get(1).getDefaultVal());
+      options.get(2).setValue(options.get(2).getDefaultVal());
+      options.get(3).setValue(options.get(3).getDefaultVal());
+      options.get(4).setValue(options.get(4).getDefaultVal());
+      options.get(5).setValue(options.get(5).getDefaultVal());
       int index = 0;
       for(int i = 2; i < 19; i += 3){
         buttons.get(i).setText(df.format(Pong.options.get(index).getValue()));

@@ -1,10 +1,10 @@
 class Option extends Button{
   
-  private float value, min, max;
+  private float value, min, max, defaultVal;
   
   public Option(String s, float f){
     super(s, 30);
-    value = f;
+    defaultVal = value = f;
     min = Float.MIN_VALUE;
     max = Float.MAX_VALUE;
   }
@@ -31,6 +31,9 @@ class Option extends Button{
   }
   public float getMin(){
     return min;
+  }
+  public float getDefaultVal(){
+    return defaultVal;
   }
   
 }
