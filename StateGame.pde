@@ -151,6 +151,7 @@ public class StateGame extends State {
     float y = (float)(enterTime + dET*framestep);
     line(Pong.halfwidth, 0, Pong.halfwidth, y);
     noStroke();
+    textFont(Pong.font, 25);
     text(scoreLeft, Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30*y/height);
     text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30*y/height);
     ellipse(halfwidth, height - 0.5*y, Pong.options.get(4).getValue(), Pong.options.get(4).getValue());
@@ -164,6 +165,7 @@ public class StateGame extends State {
     float y = (float)(enterTime + dET*framestep);
     line(Pong.halfwidth, 0, Pong.halfwidth, y);
     noStroke();
+    textFont(Pong.font, 25);
     text(scoreLeft, Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30*y/height);
     text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30*y/height);
     ellipse(halfwidth, height - 0.5*y, Pong.options.get(4).getValue(), Pong.options.get(4).getValue());
