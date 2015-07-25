@@ -50,6 +50,7 @@ public class Ball extends GameObject{
     return false;
   }
   
+  //Check if the ball went beyond the paddle. (Someone missed the ball and lost)
   public boolean ballBeyondPaddle() {
     if(getPosX() <= size*0.5F || getPosY() >= width - size*0.5F) return true;
     return false;
@@ -62,7 +63,7 @@ public class Ball extends GameObject{
   
   private void handlePaddleCollision() {
     double predX = getPosX() + vel.getX(), predY = getPosY() + vel.getY();
-    if(positionOutOfBounds()) return; //ball is going to collide anyways
+    if(positionOutOfBounds(predX, predY)) return; //ball is going to collide anyways
     
     double d = Math.sqrt(predX * predX + predY * predY);
     int times = (int)(d / 10D);
