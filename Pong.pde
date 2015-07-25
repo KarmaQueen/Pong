@@ -1,10 +1,13 @@
 import java.util.Random;
+import java.text.DecimalFormat;
 
-public static final double MS_PER_UPDATE = 6;
+public static final double MS_PER_UPDATE = 7;
 
-public static Random r;
+public static ArrayList<Option> options = new ArrayList<Option>();
 
-private float halfwidth;
+public static Random random;
+
+private static float halfwidth;
 private static PFont font;
 private static boolean keys[];
 private double previous = System.currentTimeMillis();
@@ -12,18 +15,28 @@ private double lag = 0.0;
 
 private State currentState;
 
+
+
 public void setup() {
   size(800, 450);
   smooth();
   rectMode(CENTER);
   noStroke();
-  keys = new boolean[9];
+  keys = new boolean[10];
   halfwidth = width*0.5F;
   font = createFont("Minecraft.ttf", 50);
-  r = new Random();
+  random = new Random();
   frameRate(300);
-  textAlign(LEFT, TOP);
+  textAlign(CENTER, CENTER);
   setState(new StateMenu());
+  
+  //add options here
+  options.add(new Option("Paddle Speed", 5, 0.1, 50));
+  options.add(new Option("Ball Speed", 3, 0.1, 50));
+  options.add(new Option("Ball Speed Increase", 1, 0.3, 50));
+  options.add(new Option("Paddle Size", 60, 0.1, 500));
+  options.add(new Option("Ball Size", 12, 0.1, 50));
+  options.add(new Option("Paddle Width", -99, -99, -99));
 }
 
 public void draw() {
@@ -51,6 +64,7 @@ public void keyPressed() {
   if(keyCode == LEFT)          keys[6] = true;
   if(keyCode == RIGHT)         keys[7] = true;
   if(key == ' ')               keys[8] = true;
+  if(keyCode == SHIFT)         keys[9] = true;
 }
 
 public void keyReleased() {
@@ -63,6 +77,7 @@ public void keyReleased() {
   if(keyCode == LEFT)          keys[6] = false;
   if(keyCode == RIGHT)         keys[7] = false;
   if(key == ' ')               keys[8] = false;
+  if(keyCode == SHIFT)         keys[9] = false;
 }
 
 public void render(double framestep) {

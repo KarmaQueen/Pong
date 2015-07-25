@@ -1,19 +1,113 @@
 public class Ball extends GameObject{
   
-  float speedX, speedY;
+  private Vector vel;
+  private float speed, increment;
+  private float size;
+  
+  public Ball(float size){
+    this();
+    this.size = size;
+    setHitbox(size, size);
+  }
   
   public Ball(){
-    speedX = speedY = 4;
+    speed = Pong.options.get(1).getValue();
+    increment = Pong.options.get(2).getValue();
+    vel = new Vector((random.nextBoolean()? 1 : -1)*(Math.random() + 1), Math.random() - 0.5D).normalise(speed);
+    size = 12;
+    setHitbox(size, size);
+  }
+  
+  public void resetBall(){
+    setPos(width*0.5F, height*0.5F);
+    speed = Pong.options.get(1).getValue();
+    increment = Pong.options.get(2).getValue();
+    vel = new Vector((random.nextBoolean()? 1 : -1)*(Math.random() + 1), Math.random() - 0.5D).normalise(speed);
+  }
+  
+  private void handleWallCollision() {
+    if(getPosY() <= size*0.5F){
+      vel.setY(Math.abs(vel.getY()));
+      setSpeed(speed + increment/10);
+    }
+    if(getPosY() >= height - size*0.5F){
+      vel.setY(-Math.abs(vel.getY()));
+      setSpeed(speed + increment/10);
+    }
+  }
+  
+  public boolean positionOutOfBounds(double x, double y) {
+    if(x <= size*0.5F || x >= width - size*0.5F) return true;
+    if(y <= size*0.5F || y >= height - size*0.5F) return true;
+    return false;
+  }
+  
+  //Check if the ball went beyond the paddle. (Someone missed the ball and lost)
+  public boolean ballBeyondPaddle() {
+    if(getPosX() <= 0 || getPosX() >= width) return true;
+    return false;
+  }
+  
+  public boolean collidesWithPaddle(Paddle paddle, double x, double y) {
+    double dx = Math.abs(x - paddle.getPosX()), dy = Math.abs(y - paddle.getPosY());
+    return dx <= (size + paddle.getWidth()) * 0.5F && dy <= (size + paddle.getHeight()) * 0.5F;
+  }
+  
+  private void handlePaddleCollision() {
+    double predX = getPosX() + vel.getX(), predY = getPosY() + vel.getY();
+    if(positionOutOfBounds(predX, predY)) return; //ball is going to collide anyways
+    
+    double d = vel.getLength();
+    int times = Math.max(1, (int)(d / 5D));
+    double offsetX = vel.getX() / times, offsetY = vel.getY() / times;
+    boolean collided = false;
+    
+    for(int i = 0; i <= times && !collided; i++) { //use <= to check both ends of the spectrum
+      double x = getPosX() + offsetX * i, y = getPosY() + offsetY * i;
+      StateGame game = (StateGame)getCurrentState();
+      
+      for(Paddle paddle : game.getPaddleList()) {
+        if(collidesWithPaddle(paddle, x, y)) {
+          double prevX = vel.getX();
+          vel.setX(paddle.getLeftPlayer() ? Math.abs(vel.getX()) : -Math.abs(vel.getX()));
+          
+          boolean changedDirection = prevX != vel.getX(); //seems innaccurate but should work if only sign changes
+          float addSpeed = paddle.getLeftPlayer() ? increment : -increment;
+          if(changedDirection) setSpeed(speed + addSpeed / 10);
+          
+          collided = true;
+          break;
+        }
+      }
+    }
   }
   
   public void update(){
     super.update();
     
+    handleWallCollision();
+    handlePaddleCollision();
+    
+    setPos(getPosX() + vel.getX(), getPosY() + vel.getY());
   }
 
   public void render(double framestep){
     super.render(framestep);
-    double[] pos = getPartialPos(framestep);
-    ellipse((float)pos[0], (float)pos[1], 20, 20);
+    Vector vec = getPartialPos(framestep);
+    ellipse((float)vec.getX(), (float)vec.getY(), size, size);
+  }
+  
+  public Ball setSpeed(float f){
+    speed = f;
+    vel = vel.normalise(f);
+    return this;
+  }
+  
+  public float getSpeed(){
+    return speed;
+  }
+  
+  public float getSize(){
+    return size;
   }
 }
