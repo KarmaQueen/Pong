@@ -3,7 +3,10 @@ class StateOptions extends State {
   private ArrayList<Button> buttons = new ArrayList<Button>();
   private boolean flag;
   
-  private float enterTime = 100;
+  private float enterTime = 100, timer = 50;
+  
+  private float optionChange = 0.1F;
+  private float optionChangeFast = 0.02F;
   
   DecimalFormat df = new DecimalFormat("#.#");
   
@@ -58,18 +61,26 @@ class StateOptions extends State {
    *  Parameters: int id: the parameter
    */
   public void buttonAction(int id){
-    if(!flag) return;
+    float change = optionChange;
+    if(!flag) {
+      timer--;
+      if(timer > 1)
+        return;
+      change = optionChangeFast;
+    } else {
+      timer = 50;
+    }
     switch(id){
     case 0:
       exiting = true;
       nextState = new StateMenu(); //Back to Menu
       break;
     case 1: case 4:case 7: case 10: case 13: case 16:
-      changeOptionVal(Pong.options.get((id - 1)/3), keys[9]?-1F:-0.1F);
+      changeOptionVal(Pong.options.get((id - 1)/3), keys[9]?-10*change:-change);
       buttons.get(id + 1).setText(df.format(Pong.options.get((id - 1)/3).getValue()));
       break;
     case 3: case 6:case 9: case 12: case 15: case 18:
-      changeOptionVal(Pong.options.get((id - 1)/3), keys[9]?1F:0.1F);
+      changeOptionVal(Pong.options.get((id - 1)/3), keys[9]?10*change:change);
       buttons.get(id - 1).setText(df.format(Pong.options.get((id - 1)/3).getValue()));
       break;
     case 19:

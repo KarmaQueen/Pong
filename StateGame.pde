@@ -61,7 +61,7 @@ public class StateGame extends State {
         if(b.ballBeyondPaddle()){
           if(b.getPosX() < width*0.5F) scoreRight++;
           else scoreLeft++;
-          
+          println("Beyond Baddle");
           //resets ball
           b.resetBall();
           running = false;
@@ -97,7 +97,7 @@ public class StateGame extends State {
 
     //Draws the score on the top of the screen
     textFont(font, 25);
-    text(scoreLeft, Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30);
+    text(scoreLeft,  Pong.halfwidth - textWidth("" + scoreLeft) *0.5 - 10, 30);
     text(scoreRight, Pong.halfwidth + textWidth("" + scoreRight)*0.5 + 13, 30);
 
     //Draws the input visualizer on the bottom of the screen.

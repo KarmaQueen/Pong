@@ -26,14 +26,6 @@ public class Ball extends GameObject{
   }
   
   private void handleWallCollision() {
-    if(getPosX() <= size*0.5F){
-      vel.setX(Math.abs(vel.getX()));
-      setSpeed(speed + increment/10);
-    }
-    if(getPosX() >= width - size*0.5F){
-      vel.setX(-Math.abs(vel.getX()));
-      setSpeed(speed + increment/10);
-    }
     if(getPosY() <= size*0.5F){
       vel.setY(Math.abs(vel.getY()));
       setSpeed(speed + increment/10);
@@ -52,7 +44,7 @@ public class Ball extends GameObject{
   
   //Check if the ball went beyond the paddle. (Someone missed the ball and lost)
   public boolean ballBeyondPaddle() {
-    if(getPosX() <= size*0.5F || getPosY() >= width - size*0.5F) return true;
+    if(getPosX() <= 0 || getPosX() >= width) return true;
     return false;
   }
   
@@ -72,6 +64,10 @@ public class Ball extends GameObject{
       double x = getPosX() + offsetX * i, y = getPosY() + offsetY * i;
       if(collidesWithPaddle()) {
         //change direction
+        if(getPosX() <= width*0.5F)
+          vel.setVec(Math.abs(vel.getX()), vel.getY());
+        else
+          vel.setVec(-Math.abs(vel.getX()), vel.getY()); 
         break;
       }
     }
