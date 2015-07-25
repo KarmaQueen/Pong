@@ -50,4 +50,12 @@ public class Paddle extends GameObject{
     paddleHeight = h;
     return setHitbox(w,h);
   }
+  
+  public float getWidth() {
+    return paddleWidth;
+  }
+  
+  public float getHeight() {
+    return paddleHeight;
+  }
 }

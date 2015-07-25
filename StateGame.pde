@@ -207,6 +207,14 @@ public class StateGame extends State {
     paddleList.add(paddle);
     return paddle;
   }
+  
+  public ArrayList<Ball> getBallList() {
+    return ballList;
+  }
+  
+  public ArrayList<Paddle> getPaddleList() {
+    return paddleList;
+  }
 
   //Setters
   public int incrementScoreLeft() { 

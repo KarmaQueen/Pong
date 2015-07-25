@@ -55,6 +55,9 @@ public class Vector {
   public double getY() {
     return yCoord;
   }
+  public double getLength() {
+    return Math.sqrt(xCoord * xCoord + yCoord * yCoord);
+  }
 }
 
 //These methods can be accessed directly by all other classes
