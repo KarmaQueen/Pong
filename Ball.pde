@@ -13,7 +13,7 @@ public class Ball extends GameObject{
   public Ball(){
     speed = Pong.options.get(1).getValue();
     increment = Pong.options.get(2).getValue();
-    vel = new Vector(3*(Math.random() - 0.5D), Math.random() - 0.5D).normalise(speed);
+    vel = new Vector((random.nextBoolean()? 1 : -1)*(Math.random() + 1), Math.random() - 0.5D).normalise(speed);
     size = 12;
     setHitbox(size, size);
   }
