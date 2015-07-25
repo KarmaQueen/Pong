@@ -35,7 +35,7 @@ public class StateGame extends State {
     scoreLeft = scoreRight = 0;
     running = flagRunning = false;
     
-    buttonList.add(new Button("Paused", 50, width * 0.5F, height - 60)); //ID: 0
+    buttonList.add(new Button("Start", 50, width * 0.5F, height - 60)); //ID: 0
     buttonList.add(new Button("Menu", 30, width * 0.5F + 250, height - 50));
   }
 
@@ -61,10 +61,14 @@ public class StateGame extends State {
         if(b.ballBeyondPaddle()){
           if(b.getPosX() < width*0.5F) scoreRight++;
           else scoreLeft++;
-          println("Beyond Baddle");
+          
+          buttonList.get(0).setText("Player " + (b.getPosX() < width*0.5F? 1 : 2) + " wins");
+          
           //resets ball
           b.resetBall();
           running = false;
+        } else {
+          buttonList.get(0).setText("Resume");
         }
       }
       
