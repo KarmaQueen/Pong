@@ -5,7 +5,7 @@ public static final double MS_PER_UPDATE = 7;
 
 public static ArrayList<Option> options = new ArrayList<Option>();
 
-public static Random r;
+public static Random random;
 
 private static float halfwidth;
 private static PFont font;
@@ -25,7 +25,7 @@ public void setup() {
   keys = new boolean[10];
   halfwidth = width*0.5F;
   font = createFont("Minecraft.ttf", 50);
-  r = new Random();
+  random = new Random();
   frameRate(300);
   textAlign(CENTER, CENTER);
   setState(new StateMenu());
@@ -33,7 +33,7 @@ public void setup() {
   //add options here
   options.add(new Option("Paddle Speed", 5, 0.1, 50));
   options.add(new Option("Ball Speed", 3, 0.1, 50));
-  options.add(new Option("Ball Speed Increase", 1, 0.1, 50));
+  options.add(new Option("Ball Speed Increase", 1, 0.3, 50));
   options.add(new Option("Paddle Size", 60, 0.1, 500));
   options.add(new Option("Ball Size", 12, 0.1, 50));
   options.add(new Option("Paddle Width", -99, -99, -99));
