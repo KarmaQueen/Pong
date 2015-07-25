@@ -51,6 +51,11 @@ public class Paddle extends GameObject{
     return setHitbox(w,h);
   }
   
+  //Getters
+  public boolean getLeftPlayer() {
+    return leftPlayer;
+  }
+  
   public float getWidth() {
     return paddleWidth;
   }

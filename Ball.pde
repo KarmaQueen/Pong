@@ -50,38 +50,34 @@ public class Ball extends GameObject{
   
   public boolean collidesWithPaddle(Paddle paddle, double x, double y) {
     double dx = Math.abs(x - paddle.getPosX()), dy = Math.abs(y - paddle.getPosY());
-    return dx <= (size + paddle.getWidth()) * 0.5F || dy <= (size + paddle.getHeight()) * 0.5F;
+    return dx <= (size + paddle.getWidth()) * 0.5F && dy <= (size + paddle.getHeight()) * 0.5F;
   }
   
   private void handlePaddleCollision() {
-//    double predX = getPosX() + vel.getX(), predY = getPosY() + vel.getY();
-//    if(positionOutOfBounds(predX, predY)) return; //ball is going to collide anyways
-//    
-//    double d = vel.getLength();
-//    int times = Math.max(1, (int)(d / 5D));
-//    double offsetX = vel.getX() / times, offsetY = vel.getY() / times;
-//    System.out.println(offsetX + "\t\t" + offsetY);
-//    boolean collided = false;
-//    
-//    for(int i = 0; i <= times && !collided; i++) { //use <= to check both ends of the spectrum
-//      double x = getPosX() + offsetX * i, y = getPosY() + offsetY * i;
-//      StateGame game = (StateGame)getCurrentState();
-//      
-//      for(Paddle paddle : game.getPaddleList()) {
-//        if(collidesWithPaddle(paddle, x, y)) {
-//          if(getPosX() <= width*0.5F) vel.setVec(Math.abs(vel.getX()), vel.getY());
-//          else vel.setVec(-Math.abs(vel.getX()), vel.getY());
-//          collided = true;
-//          break;
-//        }
-//      }
-//    }
+    double predX = getPosX() + vel.getX(), predY = getPosY() + vel.getY();
+    if(positionOutOfBounds(predX, predY)) return; //ball is going to collide anyways
     
-    for(Paddle paddle : ((StateGame)getCurrentState()).getPaddleList()) {
-      if(collidesWithPaddle(paddle, getPosX(), getPosY())) {
-        if(getPosX() <= width*0.5F) vel.setVec(Math.abs(vel.getX()), vel.getY());
-        else vel.setVec(-Math.abs(vel.getX()), vel.getY());
-        break;
+    double d = vel.getLength();
+    int times = Math.max(1, (int)(d / 5D));
+    double offsetX = vel.getX() / times, offsetY = vel.getY() / times;
+    boolean collided = false;
+    
+    for(int i = 0; i <= times && !collided; i++) { //use <= to check both ends of the spectrum
+      double x = getPosX() + offsetX * i, y = getPosY() + offsetY * i;
+      StateGame game = (StateGame)getCurrentState();
+      
+      for(Paddle paddle : game.getPaddleList()) {
+        if(collidesWithPaddle(paddle, x, y)) {
+          double prevX = vel.getX();
+          vel.setX(paddle.getLeftPlayer() ? Math.abs(vel.getX()) : -Math.abs(vel.getX()));
+          
+          boolean changedDirection = prevX != vel.getX(); //seems innaccurate but should work if only sign changes
+          float addSpeed = paddle.getLeftPlayer() ? increment : -increment;
+          if(changedDirection) setSpeed(speed + addSpeed / 10);
+          
+          collided = true;
+          break;
+        }
       }
     }
   }
