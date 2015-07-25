@@ -62,7 +62,7 @@ public class StateGame extends State {
           if(b.getPosX() < width*0.5F) scoreRight++;
           else scoreLeft++;
           
-          buttonList.get(0).setText("Player " + (b.getPosX() < width*0.5F? 1 : 2) + " wins");
+          buttonList.get(0).setText("Player " + (b.getPosX() < width*0.5F? 2 : 1) + " wins");
           
           //resets ball
           b.resetBall();
